@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3310124F2399496A006B0E03 /* ACATextLayerVerticalTextAlignmentCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310124E2399496A006B0E03 /* ACATextLayerVerticalTextAlignmentCenter.swift */; };
+		3353A86F2396A53F00C10260 /* CAPropertyAnimation+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3353A86E2396A53F00C10260 /* CAPropertyAnimation+Properties.swift */; };
 		33781E24236740D6005072E6 /* ACoreAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 33781E22236740D6005072E6 /* ACoreAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		33781E4323674206005072E6 /* ACoreAnimationUnitTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33781E4223674206005072E6 /* ACoreAnimationUnitTesting.swift */; };
 		33781E4523674206005072E6 /* ACoreAnimation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33781E1F236740D6005072E6 /* ACoreAnimation.framework */; };
@@ -24,6 +26,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3310124E2399496A006B0E03 /* ACATextLayerVerticalTextAlignmentCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACATextLayerVerticalTextAlignmentCenter.swift; sourceTree = "<group>"; };
+		3353A86E2396A53F00C10260 /* CAPropertyAnimation+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAPropertyAnimation+Properties.swift"; sourceTree = "<group>"; };
 		33781E1F236740D6005072E6 /* ACoreAnimation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ACoreAnimation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33781E22236740D6005072E6 /* ACoreAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACoreAnimation.h; sourceTree = "<group>"; };
 		33781E23236740D6005072E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,6 +56,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3310124D23994952006B0E03 /* TextLayer */ = {
+			isa = PBXGroup;
+			children = (
+				33781E4B23674450005072E6 /* ACATextLayer.swift */,
+				3310124E2399496A006B0E03 /* ACATextLayerVerticalTextAlignmentCenter.swift */,
+			);
+			path = TextLayer;
+			sourceTree = "<group>";
+		};
+		3353A86C2396A3B400C10260 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				3353A86D2396A3C700C10260 /* PropertyAnimation */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		3353A86D2396A3C700C10260 /* PropertyAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				3353A86E2396A53F00C10260 /* CAPropertyAnimation+Properties.swift */,
+			);
+			path = PropertyAnimation;
+			sourceTree = "<group>";
+		};
 		33781E15236740D6005072E6 = {
 			isa = PBXGroup;
 			children = (
@@ -73,7 +102,8 @@
 		33781E21236740D6005072E6 /* ACoreAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				33781E4B23674450005072E6 /* ACATextLayer.swift */,
+				3310124D23994952006B0E03 /* TextLayer */,
+				3353A86C2396A3B400C10260 /* Animation */,
 				33781E22236740D6005072E6 /* ACoreAnimation.h */,
 				33781E23236740D6005072E6 /* Info.plist */,
 			);
@@ -164,6 +194,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 33781E15236740D6005072E6;
 			productRefGroup = 33781E20236740D6005072E6 /* Products */;
@@ -198,6 +229,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3310124F2399496A006B0E03 /* ACATextLayerVerticalTextAlignmentCenter.swift in Sources */,
+				3353A86F2396A53F00C10260 /* CAPropertyAnimation+Properties.swift in Sources */,
 				33781E4C23674450005072E6 /* ACATextLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
