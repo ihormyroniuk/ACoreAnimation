@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3310124F2399496A006B0E03 /* ACATextLayerVerticalTextAlignmentCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310124E2399496A006B0E03 /* ACATextLayerVerticalTextAlignmentCenter.swift */; };
+		3310353823A11CCA000C4FFF /* dfdf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3310353723A11CCA000C4FFF /* dfdf.swift */; };
 		3353A86F2396A53F00C10260 /* CAPropertyAnimation+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3353A86E2396A53F00C10260 /* CAPropertyAnimation+Properties.swift */; };
 		33781E24236740D6005072E6 /* ACoreAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 33781E22236740D6005072E6 /* ACoreAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		33781E4323674206005072E6 /* ACoreAnimationUnitTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33781E4223674206005072E6 /* ACoreAnimationUnitTesting.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		3310124E2399496A006B0E03 /* ACATextLayerVerticalTextAlignmentCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACATextLayerVerticalTextAlignmentCenter.swift; sourceTree = "<group>"; };
+		3310353723A11CCA000C4FFF /* dfdf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dfdf.swift; sourceTree = "<group>"; };
 		3353A86E2396A53F00C10260 /* CAPropertyAnimation+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAPropertyAnimation+Properties.swift"; sourceTree = "<group>"; };
 		33781E1F236740D6005072E6 /* ACoreAnimation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ACoreAnimation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33781E22236740D6005072E6 /* ACoreAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACoreAnimation.h; sourceTree = "<group>"; };
@@ -63,6 +65,14 @@
 				3310124E2399496A006B0E03 /* ACATextLayerVerticalTextAlignmentCenter.swift */,
 			);
 			path = TextLayer;
+			sourceTree = "<group>";
+		};
+		3310353623A11C86000C4FFF /* Layer */ = {
+			isa = PBXGroup;
+			children = (
+				3310353723A11CCA000C4FFF /* dfdf.swift */,
+			);
+			path = Layer;
 			sourceTree = "<group>";
 		};
 		3353A86C2396A3B400C10260 /* Animation */ = {
@@ -102,6 +112,7 @@
 		33781E21236740D6005072E6 /* ACoreAnimation */ = {
 			isa = PBXGroup;
 			children = (
+				3310353623A11C86000C4FFF /* Layer */,
 				3310124D23994952006B0E03 /* TextLayer */,
 				3353A86C2396A3B400C10260 /* Animation */,
 				33781E22236740D6005072E6 /* ACoreAnimation.h */,
@@ -230,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3310124F2399496A006B0E03 /* ACATextLayerVerticalTextAlignmentCenter.swift in Sources */,
+				3310353823A11CCA000C4FFF /* dfdf.swift in Sources */,
 				3353A86F2396A53F00C10260 /* CAPropertyAnimation+Properties.swift in Sources */,
 				33781E4C23674450005072E6 /* ACATextLayer.swift in Sources */,
 			);
