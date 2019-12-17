@@ -12,12 +12,12 @@ private var AssociatedObjectHandle: UInt8 = 0
 
 public extension CALayer {
 
-    private var animationsCompletions: NSMutableDictionary {
+    private var animations: NSMutableDictionary {
         get {
             guard let nsDictionary = objc_getAssociatedObject(self, &AssociatedObjectHandle) as? NSMutableDictionary else {
                 let nsDictionary = NSMutableDictionary()
                 objc_setAssociatedObject(self, &AssociatedObjectHandle, nsDictionary, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                return self.animationsCompletions
+                return self.animations
             }
             return nsDictionary
         }
@@ -26,7 +26,7 @@ public extension CALayer {
     func addAnimation(_ animation: CAAnimation, onComplete completion: @escaping (Bool) -> Void) {
         let key = UUID().uuidString
         animation.delegate = self
-        animationsCompletions.setObject(completion, forKey: key as NSString)
+        animations.setObject(completion, forKey: key as NSString)
         self.add(animation, forKey: key)
     }
 
@@ -42,8 +42,8 @@ extension CALayer: CAAnimationDelegate {
         guard let keys = animationKeys() else { return }
         for key in keys  {
             guard anim == animation(forKey: key) else { continue }
-            guard let completion = animationsCompletions.object(forKey: key as NSString) as? ((Bool) -> Void) else { return }
-            animationsCompletions.removeObject(forKey: key as NSString)
+            guard let completion = animations.object(forKey: key as NSString) as? ((Bool) -> Void) else { return }
+            animations.removeObject(forKey: key as NSString)
             removeAnimation(forKey: key)
             completion(flag)
         }
