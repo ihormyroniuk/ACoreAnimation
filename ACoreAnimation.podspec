@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/ihormyroniuk/ACoreAnimation.git", 
 :tag => "0.1.2" }
 
-  s.source_files = "CoreAnimation/**/*.{swift}"
+  s.source_files = "ACoreAnimation/**/*.{swift}"
 
   s.swift_version = "4.2"
 
