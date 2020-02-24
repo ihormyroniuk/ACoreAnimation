@@ -45,6 +45,7 @@ extension CALayer: CAAnimationDelegate {
             guard anim == animation(forKey: key) else { continue }
             guard let completion = animations.object(forKey: key as NSString) as? ((Bool) -> Void) else { return }
             animations.removeObject(forKey: key as NSString)
+            removeAnimation(forKey: key)
             completion(flag)
         }
     }
