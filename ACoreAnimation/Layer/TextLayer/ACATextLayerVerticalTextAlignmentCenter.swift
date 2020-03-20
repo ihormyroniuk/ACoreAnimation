@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class ACATextLayerVerticalTextAlignmentCenter: CATextLayer {
+public class ACATextLayerVerticalTextAlignmentCenter: ACATextLayer {
 
     open override func draw(in context: CGContext) {
         let height = self.bounds.size.height
