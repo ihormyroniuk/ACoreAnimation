@@ -6,7 +6,7 @@
 //  Copyright © 2019 Ihor Myroniuk. All rights reserved.
 //
 
-import UIKit
+import QuartzCore
 
 open class ACATextLayer: CATextLayer {
     

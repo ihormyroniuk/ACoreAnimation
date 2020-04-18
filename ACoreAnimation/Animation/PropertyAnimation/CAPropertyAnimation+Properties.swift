@@ -6,7 +6,7 @@
 //  Copyright © 2019 Ihor Myroniuk. All rights reserved.
 //
 
-import UIKit
+import QuartzCore
 
 public extension CAPropertyAnimation {
     static let backgroundColor = "backgroundColor"
