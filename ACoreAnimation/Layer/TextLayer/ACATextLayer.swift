@@ -32,16 +32,5 @@ open class ACATextLayer: CATextLayer {
     open func setup() {
         
     }
-    
-    // MARK: Layout
-    
-    open override func layoutSublayers() {
-        super.layoutSublayers()
-        layout()
-    }
-    
-    open func layout() {
-        
-    }
-    
+
 }
