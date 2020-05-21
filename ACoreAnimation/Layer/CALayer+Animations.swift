@@ -8,25 +8,57 @@
 
 import QuartzCore
 
-private var DidBeginAnimationHandlersAssotiationKey: UInt8 = 0
+private var DidStartAnimationHandlersAssotiationKey: UInt8 = 0
+private var DidStopAnimationHandlersAssotiationKey: UInt8 = 0
 
 public extension CALayer {
-
-    private var didBeginAnimationHandlers: NSMutableDictionary {
+    
+    private var didStartAnimationHandlers: NSMutableDictionary {
         get {
-            guard let nsDictionary = objc_getAssociatedObject(self, &DidBeginAnimationHandlersAssotiationKey) as? NSMutableDictionary else {
+            guard let nsDictionary = objc_getAssociatedObject(self, &DidStartAnimationHandlersAssotiationKey) as? NSMutableDictionary else {
                 let nsDictionary = NSMutableDictionary()
-                objc_setAssociatedObject(self, &DidBeginAnimationHandlersAssotiationKey, nsDictionary, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                return self.didBeginAnimationHandlers
+                objc_setAssociatedObject(self, &DidStartAnimationHandlersAssotiationKey, nsDictionary, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                return self.didStartAnimationHandlers
+            }
+            return nsDictionary
+        }
+    }
+    
+    @discardableResult
+    func addAnimation(_ animation: CAAnimation, didStartAnimationHandler: @escaping () -> Void) -> String {
+        let key = UUID().uuidString
+        animation.delegate = self
+        didStartAnimationHandlers.setObject(didStartAnimationHandler, forKey: key as NSString)
+        self.add(animation, forKey: key)
+        return key
+    }
+
+    private var didStopAnimationHandlers: NSMutableDictionary {
+        get {
+            guard let nsDictionary = objc_getAssociatedObject(self, &DidStopAnimationHandlersAssotiationKey) as? NSMutableDictionary else {
+                let nsDictionary = NSMutableDictionary()
+                objc_setAssociatedObject(self, &DidStopAnimationHandlersAssotiationKey, nsDictionary, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                return self.didStopAnimationHandlers
             }
             return nsDictionary
         }
     }
 
-    func addAnimation(_ animation: CAAnimation, didBeginAnimationHandler: @escaping (Bool) -> Void) -> String {
+    @discardableResult
+    func addAnimation(_ animation: CAAnimation, didStopAnimationHandler: @escaping (Bool) -> Void) -> String {
         let key = UUID().uuidString
         animation.delegate = self
-        didBeginAnimationHandlers.setObject(didBeginAnimationHandler, forKey: key as NSString)
+        didStopAnimationHandlers.setObject(didStopAnimationHandler, forKey: key as NSString)
+        self.add(animation, forKey: key)
+        return key
+    }
+    
+    @discardableResult
+    func addAnimation(_ animation: CAAnimation, didStartAnimationHandler: @escaping () -> Void, didStopAnimationHandler: @escaping (Bool) -> Void) -> String {
+        let key = UUID().uuidString
+        animation.delegate = self
+        didStartAnimationHandlers.setObject(didStartAnimationHandler, forKey: key as NSString)
+        didStopAnimationHandlers.setObject(didStopAnimationHandler, forKey: key as NSString)
         self.add(animation, forKey: key)
         return key
     }
@@ -36,18 +68,17 @@ public extension CALayer {
 extension CALayer: CAAnimationDelegate {
 
     public func animationDidStart(_ anim: CAAnimation) {
-
+        guard let key = animationKeys()?.first(where: { anim == animation(forKey: $0) }) else { return }
+        guard let didStartAnimationHandler = didStartAnimationHandlers.object(forKey: key as NSString) as? (() -> Void) else { return }
+        didStartAnimationHandlers.removeObject(forKey: key as NSString)
+        didStartAnimationHandler()
     }
 
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        guard let keys = animationKeys() else { return }
-        for key in keys  {
-            guard anim == animation(forKey: key) else { continue }
-            guard let completion = didBeginAnimationHandlers.object(forKey: key as NSString) as? ((Bool) -> Void) else { return }
-            didBeginAnimationHandlers.removeObject(forKey: key as NSString)
-            removeAnimation(forKey: key)
-            completion(flag)
-        }
+        guard let key = animationKeys()?.first(where: { anim == animation(forKey: $0) }) else { return }
+        guard let didStopAnimationHandler = didStopAnimationHandlers.object(forKey: key as NSString) as? ((Bool) -> Void) else { return }
+        didStopAnimationHandlers.removeObject(forKey: key as NSString)
+        didStopAnimationHandler(flag)
     }
 
 }
