@@ -1,11 +1,3 @@
-//
-//  ACATextLayerVerticalTextAlignmentCenter.swift
-//  ACoreAnimation
-//
-//  Created by Ihor Myroniuk on 12/5/19.
-//  Copyright © 2019 Ihor Myroniuk. All rights reserved.
-//
-
 import QuartzCore
 
 public class ACATextLayerVerticalTextAlignmentCenter: ACATextLayer {

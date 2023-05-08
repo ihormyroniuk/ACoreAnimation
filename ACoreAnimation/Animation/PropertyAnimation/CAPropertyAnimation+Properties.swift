@@ -1,13 +1,8 @@
-//
-//  CAPropertyAnimation+Properties.swift
-//  ACoreAnimation
-//
-//  Created by Ihor Myroniuk on 12/3/19.
-//  Copyright © 2019 Ihor Myroniuk. All rights reserved.
-//
-
 import QuartzCore
 
+/*
+ https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/AnimatableProperties/AnimatableProperties.html#//apple_ref/doc/uid/TP40004514-CH11-SW2
+*/
 public extension CAPropertyAnimation {
     static let backgroundColor = "backgroundColor"
     static let bounds = "bounds"
@@ -16,4 +11,5 @@ public extension CAPropertyAnimation {
     static let fontSize = "fontSize"
     static let font = "font"
     static let contents = "contents"
+    static let transformRotation = "transform.rotation"
 }

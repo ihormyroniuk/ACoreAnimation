@@ -1,17 +1,16 @@
-//
-//  dfdf.swift
-//  ACoreAnimation
-//
-//  Created by Ihor Myroniuk on 12/11/19.
-//  Copyright © 2019 Ihor Myroniuk. All rights reserved.
-//
-
 import QuartzCore
 
 private var DidStartAnimationHandlersAssotiationKey: UInt8 = 0
 private var DidStopAnimationHandlersAssotiationKey: UInt8 = 0
 
 public extension CALayer {
+    
+    @discardableResult
+    func addAnimation(_ animation: CAAnimation, didStartAnimationHandler: @escaping () -> Void, didStopAnimationHandler: @escaping (Bool) -> Void) -> String {
+        let key = UUID().uuidString
+        self.add(animation, forKey: key)
+        return key
+    }
     
     private var didStartAnimationHandlers: NSMutableDictionary {
         get {
