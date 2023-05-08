@@ -6,7 +6,7 @@ private var DidStopAnimationHandlersAssotiationKey: UInt8 = 0
 public extension CALayer {
     
     @discardableResult
-    func addAnimation(_ animation: CAAnimation, didStartAnimationHandler: @escaping () -> Void, didStopAnimationHandler: @escaping (Bool) -> Void) -> String {
+    func addAnimation(_ animation: CAAnimation) -> String {
         let key = UUID().uuidString
         self.add(animation, forKey: key)
         return key
