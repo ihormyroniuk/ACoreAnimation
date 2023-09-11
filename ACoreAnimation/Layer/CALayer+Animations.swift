@@ -27,7 +27,7 @@ public extension CALayer {
     func addAnimation(_ animation: CAAnimation, didStartAnimationHandler: @escaping () -> Void) -> String {
         let key = UUID().uuidString
         animation.delegate = self
-        didStartAnimationHandlers.setObject(didStartAnimationHandler, forKey: key as NSString)
+        didStartAnimationHandlers.setObject(didStartAnimationHandler, forKey: animation)
         self.add(animation, forKey: key)
         return key
     }
@@ -47,7 +47,7 @@ public extension CALayer {
     func addAnimation(_ animation: CAAnimation, didStopAnimationHandler: @escaping (Bool) -> Void) -> String {
         let key = UUID().uuidString
         animation.delegate = self
-        didStopAnimationHandlers.setObject(didStopAnimationHandler, forKey: key as NSString)
+        didStopAnimationHandlers.setObject(didStopAnimationHandler, forKey: animation)
         self.add(animation, forKey: key)
         return key
     }
@@ -56,8 +56,8 @@ public extension CALayer {
     func addAnimation(_ animation: CAAnimation, didStartAnimationHandler: @escaping () -> Void, didStopAnimationHandler: @escaping (Bool) -> Void) -> String {
         let key = UUID().uuidString
         animation.delegate = self
-        didStartAnimationHandlers.setObject(didStartAnimationHandler, forKey: key as NSString)
-        didStopAnimationHandlers.setObject(didStopAnimationHandler, forKey: key as NSString)
+        didStartAnimationHandlers.setObject(didStartAnimationHandler, forKey: animation)
+        didStopAnimationHandlers.setObject(didStopAnimationHandler, forKey: animation)
         self.add(animation, forKey: key)
         return key
     }
@@ -67,16 +67,14 @@ public extension CALayer {
 extension CALayer: CAAnimationDelegate {
 
     public func animationDidStart(_ anim: CAAnimation) {
-        guard let key = animationKeys()?.first(where: { anim == animation(forKey: $0) }) else { return }
-        guard let didStartAnimationHandler = didStartAnimationHandlers.object(forKey: key as NSString) as? (() -> Void) else { return }
-        didStartAnimationHandlers.removeObject(forKey: key as NSString)
+        guard let didStartAnimationHandler = didStartAnimationHandlers.object(forKey: anim) as? (() -> Void) else { return }
+        didStartAnimationHandlers.removeObject(forKey: anim)
         didStartAnimationHandler()
     }
 
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        guard let key = animationKeys()?.first(where: { anim == animation(forKey: $0) }) else { return }
-        guard let didStopAnimationHandler = didStopAnimationHandlers.object(forKey: key as NSString) as? ((Bool) -> Void) else { return }
-        didStopAnimationHandlers.removeObject(forKey: key as NSString)
+        guard let didStopAnimationHandler = didStopAnimationHandlers.object(forKey: anim) as? ((Bool) -> Void) else { return }
+        didStopAnimationHandlers.removeObject(forKey: anim)
         didStopAnimationHandler(flag)
     }
 
