@@ -57,29 +57,8 @@ extension CALayer: CAAnimationDelegate {
     }
 
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        guard let key = anim.value(forKey: "animationKey") as? String else { return }
         guard let didStopAnimationHandler = anim.value(forKey: didStopAnimationHandlerKey) as? ((Bool) -> Void) else { return }
         didStopAnimationHandler(flag)
     }
 
-}
-
-private class DidStartAnimationHandlerHolder: NSObject {
-    
-    let didStartAnimationHandler: () -> Void
-    
-    init(didStartAnimationHandler: @escaping () -> Void) {
-        self.didStartAnimationHandler = didStartAnimationHandler
-    }
-    
-}
-
-class DidStopAnimationHandlerHolder: NSObject {
-    
-    let didStopAnimationHandler: (Bool) -> Void
-    
-    init(didStopAnimationHandler: @escaping (Bool) -> Void) {
-        self.didStopAnimationHandler = didStopAnimationHandler
-    }
-    
 }
